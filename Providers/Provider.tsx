@@ -1,4 +1,4 @@
-'use clinet'
+'use client'
 
 import React from 'react'
 import {QueryClient, QueryClientProvider} from 'react-query'
@@ -12,7 +12,7 @@ type Props = {
     children: React.ReactNode
 }
 
-export default function Povider({children}: Props) {
+export default function Provider({children}: Props) {
   return (
     <QueryClientProvider client={queryClient}>
         {children}

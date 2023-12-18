@@ -1,5 +1,7 @@
-import {z} from 'zod'
+import { z } from "zod";
 
 export const videoLinkSchema = z.object({
-    videoLink: z.string().startsWith('http', {message: 'Please provide valid link'})
-  })
+  videoLink: z
+    .string()
+    .regex(/^https:\/\/www\.youtube\.com/, "Please provide a valid YouTube link"),
+});
