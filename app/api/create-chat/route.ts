@@ -1,10 +1,9 @@
 import { YoutubeTranscript } from "youtube-transcript";
 import { NextResponse } from "next/server";
 import { videoLinkSchema } from "@/validators/videoLinkSchema";
-import axios from "axios";
-import { textSplitter } from "@/lib/text-loader";
+import { textSplitter } from "@/lib/textSplitter";
 import { getPineconeClient } from "@/lib/pinecone-client";
-import { embedAndStoreDocs } from "@/lib/vector-store";
+import { embedAndStoreDocs } from "@/lib/embedAndStore";
 import { db } from "@/lib/db";
 import { chats } from "@/lib/db/schema";
 
@@ -31,10 +30,7 @@ export async function POST(req: Request, res: Response) {
     const chunkedText = await textSplitter(wholeText); // This is an array of Documents
     // console.log(chunkedText)
 
-    // Embed individual documents to pinecone
-    const pineconeClient = await getPineconeClient();
-    await embedAndStoreDocs(pineconeClient, chunkedText, videoLink);
-
+    // Create chat in db
     const chat_id = await db
       .insert(chats)
       .values({
@@ -43,6 +39,13 @@ export async function POST(req: Request, res: Response) {
       .returning({
         chatId: chats.id,
       });
+
+    // Embed individual documents to pinecone
+    const pineconeClient = await getPineconeClient();
+    await embedAndStoreDocs(pineconeClient, chunkedText, videoLink);
+
+    
+    
 
       console.log(chat_id[0].chatId)
 

@@ -24,4 +24,6 @@ export async function embedAndStoreDocs( client: Pinecone, docs: Document<Record
         throw new Error('Failed to load your docs')
         
     }
+
+    
 }

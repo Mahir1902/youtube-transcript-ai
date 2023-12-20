@@ -22,7 +22,7 @@ export default function ChatSideBar({chats, chatId}: Props) {
 
         <div className='flex flex-col gap-2 mt-4'>
             {chats.map(chat => (
-                <Link key={chat.id} href={`/chats/${chat.id}`}>
+                <Link key={chat.id} href={`/chat/${chat.id}`}>
                     <div className={cn('rounded-lg p-3 text-slate-300 flex items-center', {'bg-blue-900 text-white' : chat.id === chatId, 'hover:bg-white/10': chat.id !== chatId} )}>
                         <MessageCircle className='mr-2'/>
                         <p className='w-full overflow-hidden text-sm truncate whitespace-nowrap text-ellipsis'>{chat.videoUrl}</p>

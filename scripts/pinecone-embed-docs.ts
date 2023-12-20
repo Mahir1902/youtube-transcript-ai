@@ -1,5 +1,5 @@
-import { textSplitter } from "@/lib/text-loader";
-import { embedAndStoreDocs } from "@/lib/vector-store";
+import { textSplitter } from "@/lib/textSplitter";
+import { embedAndStoreDocs } from "@/lib/embedAndStore";
 import { getPineconeClient } from "@/lib/pinecone-client";
 import axios from "axios";
 

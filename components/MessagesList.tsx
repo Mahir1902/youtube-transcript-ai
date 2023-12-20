@@ -13,7 +13,7 @@ export default function MessagesList({messages}: Props) {
 
 
   return (
-    <div className='flex flex-col gap-2 px-4'>
+    <div className='flex flex-col gap-4 p-6 '>
         {messages.map(messages => (
           <div
           key={messages.id}

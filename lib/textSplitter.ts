@@ -2,10 +2,10 @@ import {RecursiveCharacterTextSplitter } from 'langchain/text_splitter'
 import {Document} from 'langchain/document'
 
 // This function makes sure that the string is within the proper size when uploading to pinecone
-export const truncateStringByBytes = (str:string, bytes: number) => {
-    const enc = new TextEncoder()
-    return new TextDecoder('utf-8').decode(enc.encode(str).slice(0,bytes))
-}
+// export const truncateStringByBytes = (str:string, bytes: number) => {
+//     const enc = new TextEncoder()
+//     return new TextDecoder('utf-8').decode(enc.encode(str).slice(0,bytes))
+// }
 
 
 export async function textSplitter(text: string) {
@@ -21,7 +21,7 @@ export async function textSplitter(text: string) {
             new Document({
                 pageContent: text,
                 metadata: {
-                    text: truncateStringByBytes(text, 36000)
+                    text
                 }
             })
         ])
@@ -29,6 +29,6 @@ export async function textSplitter(text: string) {
         return chunkedText
     } catch (error) {
         console.log(error)
-        throw new Error('PDF docs chunking faild!')
+        throw new Error('Chunking failed.')
     }
 }

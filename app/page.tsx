@@ -8,7 +8,6 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { videoLinkSchema } from '@/validators/videoLinkSchema'
 import { useMutation } from 'react-query'
-import axios from 'axios'
 import { createChat } from '@/lib/createChat'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
@@ -29,13 +28,13 @@ export default function Home() {
   })
 
 
-  const {mutate, isLoading} = useMutation({
-    mutationFn: createChat
+  const {mutateAsync, isLoading} = useMutation({
+    mutationFn:  createChat
   })
 
   // Could be a server action but try using react query first
   const handleSubmit = (data: Input) => {
-    mutate({videoLink: data.videoLink}, {
+    mutateAsync({videoLink: data.videoLink}, {
       onSuccess: ({chat_id}) => {
         console.log(chat_id)
         router.push(`/chat/${chat_id}`)
