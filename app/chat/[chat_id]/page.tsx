@@ -44,7 +44,7 @@ export default async function page({ params: { chat_id } }: Props) {
           <ChatSideBar chats={chats} chatId={parseInt(chat_id)} />
         </div>
         <div className="w-full">
-          <ChatComponent chatId={parseInt(chat_id)} />
+          <ChatComponent chatId={parseInt(chat_id)} chats = {chats} />
         </div>
       </div>
     </div>

@@ -15,7 +15,11 @@ export const roleEnum = pgEnum('role_enum', ['assistant', 'user'])
 export const chats = pgTable('chats', {
     id:serial('id').primaryKey(),
     videoUrl: text('video-url').notNull(),
-    createdAt: timestamp('created_at').notNull().defaultNow()
+    createdAt: timestamp('created_at').notNull().defaultNow(),
+    title: text('title').notNull(),
+    description: text('description'),
+    thumbnailUrl : text('thumbnail url'),
+    channelTitle : text('channel tiitle'),
 })
 
 export type DrizzleChat = typeof chats.$inferSelect
